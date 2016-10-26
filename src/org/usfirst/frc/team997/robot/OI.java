@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.Joystick;
 public class OI {
 	private Joystick left, right;
 	
-	public OI() { /*TODO*/ }
+	public OI() { /*TODO initialize left and right controllers*/ }
 	public double getLeftMagnitude() { /*TODO*/ }
 	public double getRightMagnitude() { /*TODO*/ }
 }
