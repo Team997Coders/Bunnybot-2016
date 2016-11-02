@@ -10,6 +10,7 @@ public class OI {
 	private Joystick left, right;
 	
 	public OI() { /*TODO initialize left and right controllers*/ }
-	public double getLeftMagnitude() { /*TODO*/ }
-	public double getRightMagnitude() { /*TODO*/ }
+	public double getLefty() { /*TODO*/ }
+	public double getRighty() { /*TODO*/ }
+	public double getRightx() {/*TODO*/}
 }
