@@ -7,11 +7,23 @@ package org.usfirst.frc.team997.robot;
  */
 public class RobotMap {
 	public static final int
+	//// PWM
 	// Drivetrain values
 	leftMotor = 1,
 	rightMotor = 2,
 
-	shooterSlot = 0,
+	shooterFlywheel = 0,
 
-	FINAL = 0;
+	//// Spike
+	shooterTrigger = 0 /* yes, they are on the same value.  Different motor types */;
+
+	public static class PDP {
+		public static final int[]
+		leftMotor = {0, 1, 2},
+		rightMotor = {13, 14, 15};
+
+		public static final int
+		shooterFlywheel = 11,
+		shooterTrigger = 4;
+	}
 }
