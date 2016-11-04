@@ -14,7 +14,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 	public static OI oi;
-
+	
+	/** This should enable y'alls to choose between tank drive (joysticks?) and arcade drive (gamepads?). 
+	 *  Works just like selecting an autonomous.
+	 */
+	private Command driveCommand;
+	private SendableChooser driveChoose;
+	
     private Command autonomousCommand;
     private SendableChooser chooser;
     private ArrayList<SmartDashboardAble> smartDashboardList;
@@ -31,6 +37,12 @@ public class Robot extends IterativeRobot {
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         /*TODO add all subsystems to smartDashboardList*/
+        
+        driveChoose = new SendableChooser();
+        //driveChoose.addDefault("Tank Drive", new TankDrive()); //TankDrive() doesn't exist yet!!
+        //driveChoose.addObject("Arcade Drive", new ArcadeDrive()); //Also doesn't exist yet!
+        SmartDashboard.putData("Drive Mode", driveChoose);
+        
     }
 	
 	/**
@@ -77,6 +89,9 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        
+        driveCommand = (Command) driveChoose.getSelected();
+        if (driveCommand != null) driveCommand.start();
     }
 
     /**
