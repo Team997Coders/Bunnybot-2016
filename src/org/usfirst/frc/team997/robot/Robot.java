@@ -4,6 +4,7 @@ package org.usfirst.frc.team997.robot;
 import java.util.ArrayList;
 
 import org.usfirst.frc.team997.robot.commands.NullCommand;
+import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -14,13 +15,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 	public static OI oi;
-	
+	public static DriveTrain driveTrain;
+
 	/** This should enable y'alls to choose between tank drive (joysticks?) and arcade drive (gamepads?). 
 	 *  Works just like selecting an autonomous.
 	 */
 	private Command driveCommand;
 	private SendableChooser driveChoose;
-	
+
     private Command autonomousCommand;
     private SendableChooser chooser;
     private ArrayList<SmartDashboardAble> smartDashboardList;
@@ -32,6 +34,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		driveTrain = new DriveTrain();
         chooser = new SendableChooser();
         chooser.addDefault("Nothing Auto", new NullCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
