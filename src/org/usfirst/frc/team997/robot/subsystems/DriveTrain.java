@@ -1,20 +1,37 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
+import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.SmartDashboardAble;
+import org.usfirst.frc.team997.robot.commands.TankDrive;
 
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends Subsystem implements SmartDashboardAble {
-	/*TODO add motors... two Victors */
-	/*TODO add encoder for the left Victor*/
+	public SpeedController left, right;
+	public Encoder leftEncoder;
+	
 	public DriveTrain() {
-		/*TODO setup motors, use RobotMap values*/
+		left = new Victor(RobotMap.leftMotor);
+		right = new Victor(RobotMap.rightMotor);
+		leftEncoder = new Encoder(RobotMap.leftMotorEncoder);
 	}
 
-	public void smartDashboard() {/*TODO -- log encoder values*/}
+	public void smartDashboard() {
+		SmartDashboard.putNumber("Drive Train Left Motor Rate", leftEncoder.getRate());
+		SmartDashboard.putNumber("Drive Train Left Motor Distance", leftEncoder.getDistance());
+	}
 
-	protected void initDefaultCommand() {/*TODO Set the default command*/}
+	protected void initDefaultCommand() {
+		setDefaultCommand(new TankDrive());
+	}
 
 	/** Sets the voltages of the motors to the respective arguments. */
-	public void driveVoltage(double left, double right) {/*TODO*/}
+	public void driveVoltage(double l, double r) {
+		left.set(l);
+		right.set(r);
+	}
 }
