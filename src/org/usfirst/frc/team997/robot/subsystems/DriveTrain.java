@@ -17,7 +17,7 @@ public class DriveTrain extends Subsystem implements SmartDashboardAble {
 	public DriveTrain() {
 		left = new Victor(RobotMap.leftMotor);
 		right = new Victor(RobotMap.rightMotor);
-		leftEncoder = new Encoder(RobotMap.leftMotorEncoder);
+		leftEncoder = new Encoder(RobotMap.leftMotorEncoderA,RobotMap.leftMotorEncoderB);
 	}
 
 	public void smartDashboard() {
