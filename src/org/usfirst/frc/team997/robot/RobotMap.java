@@ -11,6 +11,8 @@ public class RobotMap {
 	// Drivetrain values
 	leftMotor = 1,
 	rightMotor = 2,
+	
+	leftMotorEncoder,
 
 	shooterFlywheel = 0,
 
