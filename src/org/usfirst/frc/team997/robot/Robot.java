@@ -3,7 +3,9 @@ package org.usfirst.frc.team997.robot;
 
 import java.util.ArrayList;
 
+import org.usfirst.frc.team997.robot.commands.ArcadeDrive;
 import org.usfirst.frc.team997.robot.commands.NullCommand;
+import org.usfirst.frc.team997.robot.commands.TankDrive;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -42,8 +44,8 @@ public class Robot extends IterativeRobot {
         /*TODO add all subsystems to smartDashboardList*/
         
         driveChoose = new SendableChooser();
-        //driveChoose.addDefault("Tank Drive", new TankDrive()); //TankDrive() doesn't exist yet!!
-        //driveChoose.addObject("Arcade Drive", new ArcadeDrive()); //Also doesn't exist yet!
+        driveChoose.addDefault("Tank Drive", new TankDrive());
+        driveChoose.addObject("Arcade Drive", new ArcadeDrive()); 
         SmartDashboard.putData("Drive Mode", driveChoose);
         
     }
