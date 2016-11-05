@@ -7,10 +7,30 @@ import edu.wpi.first.wpilibj.Joystick;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	private Joystick left, right;
+	private Joystick left, right, xbox;
+	private boolean isXbox;
+	public OI() {
+		left = new Joystick(0);
+		right = new Joystick(1);
+		xbox = new Joystick(2);
+		isXbox = false;
+	}
 	
-	public OI() { /*TODO initialize left and right controllers*/ }
-	public double getLeftY() { /*TODO*/ }
-	public double getRightY() { /*TODO*/ }
-	public double getRightX() {/*TODO*/}
+	public double getLeftY() {
+		if (isXbox) {
+			return xbox.getRawAxis(1);
+		} else {
+			return left.getRawAxis(1);
+		}
+	}
+	/** You must use the two controller layout to use this function. */
+	public double getRightY() {
+		assert !isXbox;
+		return right.getRawAxis(1);
+	}
+	/** You must use the one controller layout to use this function. */
+	public double getRightX() {
+		assert isXbox;
+		return xbox.getRawAxis(0);
+	}
 }
