@@ -7,6 +7,7 @@ import org.usfirst.frc.team997.robot.commands.ArcadeDrive;
 import org.usfirst.frc.team997.robot.commands.NullCommand;
 import org.usfirst.frc.team997.robot.commands.TankDrive;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team997.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain driveTrain;
+	public static Shooter shooter;
 
 	/** This should enable y'alls to choose between tank drive (joysticks?) and arcade drive (gamepads?). 
 	 *  Works just like selecting an autonomous.
@@ -37,6 +39,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		driveTrain = new DriveTrain();
+		shooter = new Shooter();
         chooser = new SendableChooser();
         chooser.addDefault("Nothing Auto", new NullCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
