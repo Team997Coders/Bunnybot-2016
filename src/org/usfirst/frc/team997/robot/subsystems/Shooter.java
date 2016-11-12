@@ -31,7 +31,6 @@ public class Shooter extends Subsystem implements SmartDashboardAble{
 
 
     public void pushTrigger() {
-    	trigger.setDirection(Relay.Direction.kForward);
     	trigger.set(Relay.Value.kOn);
     	triggered = true;
 	
