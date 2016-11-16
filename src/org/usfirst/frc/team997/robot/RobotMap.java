@@ -32,8 +32,8 @@ public class RobotMap {
 		
 	}
 
-	/*public static class Values {
+	public static class Values {
 		public static final double
 		shootSpeed = 1.0;
-	}*/
+	}
 }
