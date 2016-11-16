@@ -12,8 +12,8 @@ public class RobotMap {
 	leftMotor = 1,
 	rightMotor = 2,
 	
-	leftMotorEncoderA,
-	leftMotorEncoderB,
+	leftMotorEncoderA = 0,
+	leftMotorEncoderB = 0,
 
 	shooterFlywheel = 0,
 

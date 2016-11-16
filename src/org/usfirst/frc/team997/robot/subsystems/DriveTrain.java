@@ -1,5 +1,6 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
+import org.usfirst.frc.team997.robot.Robot;
 import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.SmartDashboardAble;
 import org.usfirst.frc.team997.robot.commands.TankDrive;
@@ -15,14 +16,15 @@ public class DriveTrain extends Subsystem implements SmartDashboardAble {
 	public Encoder leftEncoder;
 	
 	public DriveTrain() {
+		Robot.smartDashboardList.add(this);
 		left = new Victor(RobotMap.leftMotor);
 		right = new Victor(RobotMap.rightMotor);
-		leftEncoder = new Encoder(RobotMap.leftMotorEncoderA,RobotMap.leftMotorEncoderB);
+		//leftEncoder = new Encoder(RobotMap.leftMotorEncoderA,RobotMap.leftMotorEncoderB);
 	}
 
 	public void smartDashboard() {
-		SmartDashboard.putNumber("Drive Train Left Motor Rate", leftEncoder.getRate());
-		SmartDashboard.putNumber("Drive Train Left Motor Distance", leftEncoder.getDistance());
+	//	SmartDashboard.putNumber("Drive Train Left Motor Rate", leftEncoder.getRate());
+	//	SmartDashboard.putNumber("Drive Train Left Motor Distance", leftEncoder.getDistance());
 	}
 
 	protected void initDefaultCommand() {

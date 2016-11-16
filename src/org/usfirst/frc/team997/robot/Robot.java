@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 
     private Command autonomousCommand;
     private SendableChooser chooser;
-    private ArrayList<SmartDashboardAble> smartDashboardList;
+    public static ArrayList<SmartDashboardAble> smartDashboardList;
     /*TODO add DriveTrain module, add it to smartDashboardList (.add())*/
 
     /**

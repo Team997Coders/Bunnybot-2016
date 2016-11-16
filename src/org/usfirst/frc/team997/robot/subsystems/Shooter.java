@@ -1,5 +1,6 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
+import org.usfirst.frc.team997.robot.Robot;
 import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.SmartDashboardAble;
 
@@ -17,6 +18,7 @@ public class Shooter extends Subsystem implements SmartDashboardAble{
     public boolean triggered;
 	
     public Shooter() {
+    	Robot.smartDashboardList.add(this);
     	trigger = new Relay(RobotMap.shooterTrigger);
     	shootWheel = new Talon(RobotMap.shooterFlywheel);
     }
