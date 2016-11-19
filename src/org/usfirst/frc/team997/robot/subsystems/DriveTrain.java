@@ -37,8 +37,8 @@ public class DriveTrain extends Subsystem implements SmartDashboardAble {
 
 	/** Sets the voltages of the motors to the respective arguments. */
 	public void driveVoltage(double l, double r) {
-		leftV = l;
-		rightV = r;
+		leftV = l * Robot.pdpCurrentMultiplier();
+		rightV = r * Robot.pdpCurrentMultiplier();
 		
 		left.set(leftV);
 		right.set(rightV);

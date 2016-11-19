@@ -46,7 +46,7 @@ public class Shooter extends Subsystem implements SmartDashboardAble{
     }
     
     public void speedUp() {
-    	flySpeed = RobotMap.Values.shootSpeed;
+    	flySpeed = RobotMap.Values.shootSpeed * Robot.pdpCurrentMultiplier();
     	shootWheel.set(flySpeed);
     }
     

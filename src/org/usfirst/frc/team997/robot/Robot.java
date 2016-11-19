@@ -10,6 +10,7 @@ import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team997.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -30,6 +31,7 @@ public class Robot extends IterativeRobot {
     private Command autonomousCommand;
     private SendableChooser chooser;
     public static ArrayList<SmartDashboardAble> smartDashboardList;
+    private static PowerDistributionPanel pdp;
     /*TODO add DriveTrain module, add it to smartDashboardList (.add())*/
 
     /**
@@ -51,6 +53,7 @@ public class Robot extends IterativeRobot {
         driveChoose.addObject("Arcade Drive", new ArcadeDrive()); 
         SmartDashboard.putData("Drive Mode", driveChoose);
         
+        pdp = new PowerDistributionPanel();
     }
 	
 	/**
@@ -120,6 +123,15 @@ public class Robot extends IterativeRobot {
     private void smartDashboard() {
     	for (SmartDashboardAble s : smartDashboardList) {
     		s.smartDashboard();
+    	}
+    }
+    
+    public static double pdpCurrentMultiplier() {
+    	double totalCurrent = pdp.getTotalCurrent();
+    	if(totalCurrent >= 115) {
+    		return 0.8;
+    	} else {
+    		return 1;
     	}
     }
 }
