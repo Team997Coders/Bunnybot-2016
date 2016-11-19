@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveTrain extends Subsystem implements SmartDashboardAble {
 	public SpeedController left, right;
 	public Encoder leftEncoder;
+	private double leftV = 0;
+	private double rightV = 0;
 	
 	public DriveTrain() {
 		Robot.smartDashboardList.add(this);
@@ -25,6 +27,8 @@ public class DriveTrain extends Subsystem implements SmartDashboardAble {
 	public void smartDashboard() {
 	//	SmartDashboard.putNumber("Drive Train Left Motor Rate", leftEncoder.getRate());
 	//	SmartDashboard.putNumber("Drive Train Left Motor Distance", leftEncoder.getDistance());
+		SmartDashboard.putNumber("Left Motor Current", leftV);
+		SmartDashboard.putNumber("Right Motor Current", rightV);
 	}
 
 	protected void initDefaultCommand() {
@@ -33,7 +37,11 @@ public class DriveTrain extends Subsystem implements SmartDashboardAble {
 
 	/** Sets the voltages of the motors to the respective arguments. */
 	public void driveVoltage(double l, double r) {
-		left.set(l);
-		right.set(r);
+		leftV = l;
+		rightV = r;
+		
+		left.set(leftV);
+		right.set(rightV);
+		
 	}
 }

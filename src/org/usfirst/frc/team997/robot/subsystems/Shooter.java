@@ -16,6 +16,7 @@ public class Shooter extends Subsystem implements SmartDashboardAble{
     public Relay trigger;
     public Talon shootWheel;
     public boolean triggered;
+    private double flySpeed;
 	
     public Shooter() {
     	Robot.smartDashboardList.add(this);
@@ -24,7 +25,8 @@ public class Shooter extends Subsystem implements SmartDashboardAble{
     }
 
     public void smartDashboard() {
-    
+    	SmartDashboard.putBoolean("Shooting", triggered);
+    	SmartDashboard.putNumber("Flywheel Speed", flySpeed);
     }
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -44,11 +46,13 @@ public class Shooter extends Subsystem implements SmartDashboardAble{
     }
     
     public void speedUp() {
-    	shootWheel.set(RobotMap.Values.shootSpeed);
+    	flySpeed = RobotMap.Values.shootSpeed;
+    	shootWheel.set(flySpeed);
     }
     
     public void unSpeedUp() {
-    	shootWheel.set(0.0);
+    	flySpeed = 0;
+    	shootWheel.set(flySpeed);
     }
 }
 
