@@ -9,8 +9,8 @@ public class RobotMap {
 	public static final int
 	//// PWM
 	// Drivetrain values
-	leftMotor = 1,
-	rightMotor = 2,
+	leftMotor = 0,
+	rightMotor = 1,
 	
 	leftMotorEncoderA = 0,
 	leftMotorEncoderB = 0,
