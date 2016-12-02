@@ -3,8 +3,6 @@ package org.usfirst.frc.team997.robot;
 import org.usfirst.frc.team997.robot.commands.ToggleController;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
