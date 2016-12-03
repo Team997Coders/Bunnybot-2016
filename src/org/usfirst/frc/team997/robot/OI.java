@@ -1,5 +1,7 @@
 package org.usfirst.frc.team997.robot;
 
+
+import org.usfirst.frc.team997.robot.commands.SwitchDriveTrain;
 import org.usfirst.frc.team997.robot.commands.ToggleController;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -18,6 +20,7 @@ public class OI {
 		xbox = new Joystick(2);
 		isXbox = false;
 		SmartDashboard.putData("Trigger Toggle", new ToggleController());
+		SmartDashboard.putData("Drivetrain Switch", new SwitchDriveTrain());
 	}
 	
 	public double getLeftY() {

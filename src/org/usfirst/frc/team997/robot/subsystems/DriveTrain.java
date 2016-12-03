@@ -3,6 +3,7 @@ package org.usfirst.frc.team997.robot.subsystems;
 import org.usfirst.frc.team997.robot.Robot;
 import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.SmartDashboardAble;
+import org.usfirst.frc.team997.robot.commands.SwitchDriveTrain;
 import org.usfirst.frc.team997.robot.commands.TankDrive;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -37,8 +38,8 @@ public class DriveTrain extends Subsystem implements SmartDashboardAble {
 
 	/** Sets the voltages of the motors to the respective arguments. */
 	public void driveVoltage(double l, double r) {
-		leftV = l * Robot.pdpCurrentMultiplier();
-		rightV = r * Robot.pdpCurrentMultiplier();
+		leftV = -l * Robot.pdpCurrentMultiplier() * SwitchDriveTrain.forwards;
+		rightV = r * Robot.pdpCurrentMultiplier() * SwitchDriveTrain.forwards;
 		
 		left.set(leftV);
 		right.set(rightV);
