@@ -39,6 +39,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	smartDashboardList = new ArrayList<SmartDashboardAble>();
 		oi = new OI();
 		try {
 			driveTrain = new DriveTrain();
