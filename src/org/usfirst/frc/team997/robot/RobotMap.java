@@ -28,8 +28,6 @@ public class RobotMap {
 		public static final int
 		shooterFlywheel = 11,
 		shooterTrigger = 4;
-		
-		
 	}
 
 	public static class Values {

@@ -53,7 +53,7 @@ public class Robot extends IterativeRobot {
 		}
         chooser = new SendableChooser();
         chooser.addDefault("Nothing Auto", new NullCommand());
-//        chooser.addObject("My Auto", new MyAutoCommand());
+        //chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         /*TODO add all subsystems to smartDashboardList*/
         
