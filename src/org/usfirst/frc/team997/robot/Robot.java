@@ -47,7 +47,7 @@ public class Robot extends IterativeRobot {
 			e.printStackTrace();
 		}
 		try {
-			shooter = new Shooter();
+			//shooter = new Shooter();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
