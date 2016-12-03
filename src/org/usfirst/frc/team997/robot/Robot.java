@@ -40,8 +40,16 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
-		driveTrain = new DriveTrain();
-		shooter = new Shooter();
+		try {
+			driveTrain = new DriveTrain();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			shooter = new Shooter();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         chooser = new SendableChooser();
         chooser.addDefault("Nothing Auto", new NullCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
@@ -53,7 +61,11 @@ public class Robot extends IterativeRobot {
         driveChoose.addObject("Arcade Drive", new ArcadeDrive()); 
         SmartDashboard.putData("Drive Mode", driveChoose);
         
-        pdp = new PowerDistributionPanel();
+        try {
+        	pdp = new PowerDistributionPanel();
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
     }
 	
 	/**
