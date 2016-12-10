@@ -25,13 +25,13 @@ public class Robot extends IterativeRobot {
 	/** This should enable y'alls to choose between tank drive (joysticks?) and arcade drive (gamepads?). 
 	 *  Works just like selecting an autonomous.
 	 */
-	private Command driveCommand;
+	public static Command driveCommand;
 	private SendableChooser driveChoose;
 
     private Command autonomousCommand;
     private SendableChooser chooser;
     public static ArrayList<SmartDashboardAble> smartDashboardList;
-    private static PowerDistributionPanel pdp;
+    public static PowerDistributionPanel pdp;
     /*TODO add DriveTrain module, add it to smartDashboardList (.add())*/
 
     /**
@@ -56,11 +56,6 @@ public class Robot extends IterativeRobot {
         //chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         /*TODO add all subsystems to smartDashboardList*/
-        
-        driveChoose = new SendableChooser();
-        driveChoose.addDefault("Tank Drive", new TankDrive());
-        driveChoose.addObject("Arcade Drive", new ArcadeDrive()); 
-        SmartDashboard.putData("Drive Mode", driveChoose);
         
         try {
         	pdp = new PowerDistributionPanel();
@@ -113,9 +108,6 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        
-        driveCommand = (Command) driveChoose.getSelected();
-        if (driveCommand != null) driveCommand.start();
     }
 
     /**
@@ -141,10 +133,18 @@ public class Robot extends IterativeRobot {
     
     public static double pdpCurrentMultiplier() {
     	double totalCurrent = pdp.getTotalCurrent();
+    	SmartDashboard.putNumber("Total Current", totalCurrent);
     	if(totalCurrent >= 115) {
     		return 0.8;
     	} else {
     		return 1;
     	}
+    }
+    
+    public static double deadband(double x) {
+    	if (Math.abs(x) < .05) { 
+    		return 0;
+    	}
+    	return x;
     }
 }

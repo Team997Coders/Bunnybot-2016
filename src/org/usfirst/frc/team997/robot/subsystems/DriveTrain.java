@@ -1,12 +1,12 @@
 package org.usfirst.frc.team997.robot.subsystems;
 
+import org.usfirst.frc.team997.robot.AverageCurrent;
 import org.usfirst.frc.team997.robot.Robot;
 import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.SmartDashboardAble;
+import org.usfirst.frc.team997.robot.commands.Drive;
 import org.usfirst.frc.team997.robot.commands.SwitchDriveTrain;
-import org.usfirst.frc.team997.robot.commands.TankDrive;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -14,9 +14,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends Subsystem implements SmartDashboardAble {
 	public SpeedController left, right;
-	public Encoder leftEncoder;
+	//public Encoder leftEncoder;
 	private double leftV = 0;
 	private double rightV = 0;
+	private AverageCurrent leftCurrent = new AverageCurrent(RobotMap.PDP.leftMotor);
+	private AverageCurrent rightCurrent = new AverageCurrent(RobotMap.PDP.rightMotor);
 	
 	public DriveTrain() {
 		Robot.smartDashboardList.add(this);
@@ -28,12 +30,16 @@ public class DriveTrain extends Subsystem implements SmartDashboardAble {
 	public void smartDashboard() {
 	//	SmartDashboard.putNumber("Drive Train Left Motor Rate", leftEncoder.getRate());
 	//	SmartDashboard.putNumber("Drive Train Left Motor Distance", leftEncoder.getDistance());
-		SmartDashboard.putNumber("Left Motor Current", leftV);
-		SmartDashboard.putNumber("Right Motor Current", rightV);
+		leftCurrent.poll();
+		rightCurrent.poll();
+		SmartDashboard.putNumber("Left Motor Output", leftV);
+		SmartDashboard.putNumber("Left Motor Current", leftCurrent.getAverage());
+		SmartDashboard.putNumber("Right Motor Output", rightV);
+		SmartDashboard.putNumber("Right Motor Current", rightCurrent.getAverage());
 	}
 
 	protected void initDefaultCommand() {
-		setDefaultCommand(new TankDrive());
+		setDefaultCommand(new Drive());
 	}
 
 	/** Sets the voltages of the motors to the respective arguments. */
@@ -43,6 +49,5 @@ public class DriveTrain extends Subsystem implements SmartDashboardAble {
 		
 		left.set(leftV);
 		right.set(rightV);
-		
 	}
 }

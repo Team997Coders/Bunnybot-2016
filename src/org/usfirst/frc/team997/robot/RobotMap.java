@@ -23,11 +23,9 @@ public class RobotMap {
 	public static class PDP {
 		public static final int[]
 		leftMotor = {0, 1, 2},
-		rightMotor = {13, 14, 15};
-
-		public static final int
-		shooterFlywheel = 11,
-		shooterTrigger = 4;
+		rightMotor = {13, 14, 15},
+		shooterFlywheel = {11},
+		shooterTrigger = {4};
 	}
 
 	public static class Values {

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team997.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc.team997.robot.*;
 /**
  *
@@ -19,7 +20,7 @@ public class TankDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.driveVoltage(Robot.oi.getLeftY(), Robot.oi.getRightY());
+    	Robot.driveTrain.driveVoltage(Robot.deadband(Robot.oi.getLeftY()), Robot.deadband(Robot.oi.getRightY()));
     }
 
     // Make this return true when this Command no longer needs to run execute()

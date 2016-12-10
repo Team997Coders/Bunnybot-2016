@@ -24,7 +24,7 @@ public class ArcadeDrive extends Command {
     	double left = Robot.oi.getLeftY();
     	double right = Robot.oi.getRightX();
     	
-    	Robot.driveTrain.driveVoltage(left + right, left - right);
+    	Robot.driveTrain.driveVoltage(Robot.deadband(left + right), Robot.deadband(left - right));
     }
 
     // Make this return true when this Command no longer needs to run execute()

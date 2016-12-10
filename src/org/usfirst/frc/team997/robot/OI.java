@@ -19,7 +19,7 @@ public class OI {
 		right = new Joystick(1);
 		xbox = new Joystick(2);
 		isXbox = false;
-		SmartDashboard.putData("Trigger Toggle", new ToggleController());
+		SmartDashboard.putData("Arcade Tank Toggle", new ToggleController());
 		SmartDashboard.putData("Drivetrain Switch", new SwitchDriveTrain());
 	}
 	
@@ -38,6 +38,6 @@ public class OI {
 	/** You must use the one controller layout to use this function. */
 	public double getRightX() {
 		assert isXbox;
-		return xbox.getRawAxis(0);
+		return xbox.getRawAxis(2);
 	}
 }
