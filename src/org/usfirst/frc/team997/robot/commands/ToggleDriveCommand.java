@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class SwitchDriveTrain extends Command implements SmartDashboardAble {
+public class ToggleDriveCommand extends Command implements SmartDashboardAble {
 	
 	public static double forwards=1;
 	
-    public SwitchDriveTrain() {
+    public ToggleDriveCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

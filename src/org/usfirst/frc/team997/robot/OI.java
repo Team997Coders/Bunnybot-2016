@@ -1,10 +1,13 @@
 package org.usfirst.frc.team997.robot;
 
 
-import org.usfirst.frc.team997.robot.commands.SwitchDriveTrain;
+import org.usfirst.frc.team997.robot.commands.ToggleShooterFire;
+import org.usfirst.frc.team997.robot.commands.ToggleDriveCommand;
 import org.usfirst.frc.team997.robot.commands.ToggleController;
+import org.usfirst.frc.team997.robot.commands.ToggleFlywheel;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -13,19 +16,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class OI {
 	private Joystick left, right, xbox;
+	private JoystickButton xboxSpinup, xboxShoot;
 	public boolean isXbox;
 	public OI() {
 		left = new Joystick(0);
 		right = new Joystick(1);
 		xbox = new Joystick(2);
-		isXbox = false;
+		isXbox = true;
 		SmartDashboard.putData("Arcade Tank Toggle", new ToggleController());
-		SmartDashboard.putData("Drivetrain Switch", new SwitchDriveTrain());
+		SmartDashboard.putData("Drivetrain Switch", new ToggleDriveCommand());
+
+		xboxSpinup = new JoystickButton(xbox, 1);
+		xboxSpinup.whenPressed(new ToggleFlywheel());
+		xboxShoot = new JoystickButton(xbox, 3);
+		xboxShoot.whenPressed(new ToggleShooterFire());
 	}
 	
 	public double getLeftY() {
 		if (isXbox) {
-			return xbox.getRawAxis(1);
+			return -xbox.getRawAxis(1);
 		} else {
 			return left.getRawAxis(1);
 		}

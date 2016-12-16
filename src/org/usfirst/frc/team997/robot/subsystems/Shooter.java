@@ -3,6 +3,7 @@ package org.usfirst.frc.team997.robot.subsystems;
 import org.usfirst.frc.team997.robot.Robot;
 import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.SmartDashboardAble;
+import org.usfirst.frc.team997.robot.commands.ShooterCommand;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Talon;
@@ -28,29 +29,27 @@ public class Shooter extends Subsystem implements SmartDashboardAble{
     	SmartDashboard.putBoolean("Shooting", triggered);
     	SmartDashboard.putNumber("Flywheel Speed", flySpeed);
     }
+
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new ShooterCommand());
     }
 
-
     public void pushTrigger() {
-    	trigger.set(Relay.Value.kOn);
+    	trigger.set(Relay.Value.kForward);
     	triggered = true;
-	
 	}
 
-    public void unTrigger() {
+    public void releaseTrigger() {
     	trigger.set(Relay.Value.kOff);
     	triggered = false;
     }
     
-    public void speedUp() {
-    	flySpeed = RobotMap.Values.shootSpeed * Robot.pdpCurrentMultiplier();
+    public void speedUpFlywheel() {
+    	flySpeed = RobotMap.shootSpeed;// * Robot.pdpCurrentMultiplier();
     	shootWheel.set(flySpeed);
     }
     
-    public void unSpeedUp() {
+    public void slowDownFlywheel() {
     	flySpeed = 0;
     	shootWheel.set(flySpeed);
     }

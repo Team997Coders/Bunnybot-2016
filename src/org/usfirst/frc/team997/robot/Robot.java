@@ -3,9 +3,7 @@ package org.usfirst.frc.team997.robot;
 
 import java.util.ArrayList;
 
-import org.usfirst.frc.team997.robot.commands.ArcadeDrive;
 import org.usfirst.frc.team997.robot.commands.NullCommand;
-import org.usfirst.frc.team997.robot.commands.TankDrive;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team997.robot.subsystems.Shooter;
 
@@ -29,7 +27,7 @@ public class Robot extends IterativeRobot {
 	private SendableChooser driveChoose;
 
     private Command autonomousCommand;
-    private SendableChooser chooser;
+    private SendableChooser autonomousChooser;
     public static ArrayList<SmartDashboardAble> smartDashboardList;
     public static PowerDistributionPanel pdp;
     /*TODO add DriveTrain module, add it to smartDashboardList (.add())*/
@@ -40,21 +38,20 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	smartDashboardList = new ArrayList<SmartDashboardAble>();
-		oi = new OI();
 		try {
 			driveTrain = new DriveTrain();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		try {
-			//shooter = new Shooter();
+			shooter = new Shooter();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        chooser = new SendableChooser();
-        chooser.addDefault("Nothing Auto", new NullCommand());
+        autonomousChooser = new SendableChooser();
+        autonomousChooser.addDefault("Nothing Auto", new NullCommand());
         //chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
+        SmartDashboard.putData("Auto mode", autonomousChooser);
         /*TODO add all subsystems to smartDashboardList*/
         
         try {
@@ -62,6 +59,8 @@ public class Robot extends IterativeRobot {
         } catch (Exception e) {
         	e.printStackTrace();
         }
+        
+		oi = new OI();
     }
 	
 	/**
@@ -88,7 +87,7 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
+        autonomousCommand = (Command) autonomousChooser.getSelected();
 
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
@@ -134,15 +133,15 @@ public class Robot extends IterativeRobot {
     public static double pdpCurrentMultiplier() {
     	double totalCurrent = pdp.getTotalCurrent();
     	SmartDashboard.putNumber("Total Current", totalCurrent);
-    	if(totalCurrent >= 115) {
-    		return 0.8;
+    	if(totalCurrent >= RobotMap.PDP.maxCurrent) {
+    		return RobotMap.PDP.overMaxMultiplier;
     	} else {
     		return 1;
     	}
     }
     
     public static double deadband(double x) {
-    	if (Math.abs(x) < .05) { 
+    	if (Math.abs(x) < RobotMap.deadBandValue) {
     		return 0;
     	}
     	return x;

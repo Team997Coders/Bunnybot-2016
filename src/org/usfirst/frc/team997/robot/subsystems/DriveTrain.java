@@ -4,8 +4,8 @@ import org.usfirst.frc.team997.robot.AverageCurrent;
 import org.usfirst.frc.team997.robot.Robot;
 import org.usfirst.frc.team997.robot.RobotMap;
 import org.usfirst.frc.team997.robot.SmartDashboardAble;
-import org.usfirst.frc.team997.robot.commands.Drive;
-import org.usfirst.frc.team997.robot.commands.SwitchDriveTrain;
+import org.usfirst.frc.team997.robot.commands.DriveTrainCommand;
+import org.usfirst.frc.team997.robot.commands.ToggleDriveCommand;
 
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
@@ -39,14 +39,15 @@ public class DriveTrain extends Subsystem implements SmartDashboardAble {
 	}
 
 	protected void initDefaultCommand() {
-		setDefaultCommand(new Drive());
+		setDefaultCommand(new DriveTrainCommand());
 	}
 
 	/** Sets the voltages of the motors to the respective arguments. */
 	public void driveVoltage(double l, double r) {
-		leftV = -l * Robot.pdpCurrentMultiplier() * SwitchDriveTrain.forwards;
-		rightV = r * Robot.pdpCurrentMultiplier() * SwitchDriveTrain.forwards;
-		
+		final double currentMultiplier = Robot.pdpCurrentMultiplier(); 
+		leftV = -l * currentMultiplier * ToggleDriveCommand.forwards;
+		rightV = r * currentMultiplier * ToggleDriveCommand.forwards;
+
 		left.set(leftV);
 		right.set(rightV);
 	}

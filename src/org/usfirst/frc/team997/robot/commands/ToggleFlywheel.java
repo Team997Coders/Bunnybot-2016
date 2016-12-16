@@ -8,23 +8,14 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ToggleFlywheel extends Command {
-	
-	private boolean flying = false;
-
     public ToggleFlywheel() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(flying) {
-    		Robot.shooter.unSpeedUp();
-    	} else {
-    		Robot.shooter.speedUp();
-        }
-    	flying = !flying;
+    	ShooterCommand.flywheelOn = !ShooterCommand.flywheelOn;
     }
 
     // Called repeatedly when this Command is scheduled to run
