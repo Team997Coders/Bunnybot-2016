@@ -4,6 +4,7 @@ import org.usfirst.frc.team997.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -34,10 +35,15 @@ public class ShooterCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (t.get() >= .3) {
+    	if (t.get() >= .4) {
     		triggerPulled = false;
-    		flywheelOn = false;
     	}
+    	if (t.get() >= .5) {
+    		flywheelOn = false;
+    		t.reset();
+    		t.stop();
+    	}
+    	SmartDashboard.putBoolean("flyWheelOn", ShooterCommand.flywheelOn);
     	if (flywheelOn) {
     		Robot.shooter.speedUpFlywheel();
     	} else {

@@ -3,6 +3,7 @@ package org.usfirst.frc.team997.robot;
 
 import java.util.ArrayList;
 
+import org.usfirst.frc.team997.robot.commands.DriveForwardAutonomous;
 import org.usfirst.frc.team997.robot.commands.NullCommand;
 import org.usfirst.frc.team997.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team997.robot.subsystems.Shooter;
@@ -50,6 +51,7 @@ public class Robot extends IterativeRobot {
 		}
         autonomousChooser = new SendableChooser();
         autonomousChooser.addDefault("Nothing Auto", new NullCommand());
+        autonomousChooser.addObject("Drive Forward 2 Seconds", new DriveForwardAutonomous());
         //chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", autonomousChooser);
         /*TODO add all subsystems to smartDashboardList*/
